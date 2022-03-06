@@ -1,0 +1,50 @@
+
+Name: Aysha
+Id: 21200301424
+Section: A
+
+
+PartA:
+
+
+CREATE TABLE SALESMAN ( SalesmanId NUMBER(4), FirstName VARCHAR (50) Not Null, LastName VARCHAR (50) Not Null, Area VARCHAR (15) Not Null, YearOfService NUMBER(2) Not Null  , Salary NUMBER(7,2), CONSTRAINTS S_SALESMAN PRIMARY KEY (SalesmanId) );
+
+
+CREATE TABLE CUSTOMER ( CustomerId NUMBER(4), CustomerName VARCHAR (50) Not Null, Location VARCHAR (15) Not Null, PinCode NUMBER (8) Not Null, Class VARCHAR(1) Default 'C', CONSTRAINTS S_CUSTOMER PRIMARY KEY (CustomerId) );
+
+CREATE TABLE ORDERS ( OrderId NUMBER(4), CustomerId NUMBER (4) Not Null, SalesmanId NUMBER (4) Not Null, OrderDate date Not Null, OrderAmount NUMBER(8,2) constraint OrderAmount check(OrderAmount >= 10), PRIMARY KEY (OrderId), FOREIGN KEY (CustomerId) REFERENCES CUSTOMER (CustomerId), FOREIGN KEY (SalesmanId) REFERENCES SALESMAN (SalesmanId) );
+
+
+1. select name,city,salary from salaesman;
+2. select name from salaesman where city!='Dhaka';
+3. select CustomerName, Location from CUSTOMER where Class=='A';
+4. select area from salesman GROUP by FirstName,LastName; 
+5. update customers SET Class = 'A' WHERE Location = 'Gulshan';
+6. select * from customer where location="Banani";
+7. select name from salaesman where salary>20000.00;
+8. update ORDERS SET OrderAmount = 1000 WHERE OrderId = 3004;
+9. select fname,lname from salesman order by salary asc;
+10. select * from ORDERS where orderId=2003 order by date;
+13. select location from customer GROUP by custName;
+15. delete ORDERS where orderAmoun<50;
+
+
+
+PartB:
+
+1. select * from Products where price>180;
+2. select * from products where Code!=2;
+3. select * from products where price BETWEEN 100 AND 200;
+4. select SUM (price) from products;
+5. select COUNT(*) from products;
+6. select * from citizen where salary = (select MAX(salary) from CITIZEN);
+7. select MAX(price) from products;
+8. select AVG(price) from products;
+9. select C_HOME from citizen where C_HOME like 'C%';
+10. select * from citizen where (occupation = 'Teacher' OR occupation = 'Musician' OR occupation = 'Business');
+11. select C_NAME from citizen ORDER BY C_NAME ASC;
+12. select SUM(salary) from citizen where occupation = 'Musician';
+13. select SUM(price) from products where Manufacturer>3;
+14. select TOP 3 * from citizen ;
+15. SELECT M.Name AS "Manufacturer Name" FROM Manufacturers M, Products P WHERE P.Manufacturer = M.Code AND P.Price =( SELECT MAX(P.Price) FROM Products P);
+
